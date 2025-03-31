@@ -1,0 +1,308 @@
+/* css/sections.css */
+
+/* --- Accueil Section --- */
+.chart-container {
+    background: var(--card-bg); /* Use card background */
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+    height: 400px; /* Adjust height as needed */
+    position: relative; /* Needed for Chart.js responsiveness */
+}
+.dark-mode .chart-container {
+    background: var(--card-bg);
+}
+
+#monthlyIncomeChart {
+    width: 100% !important; /* Ensure chart takes full width */
+    height: 100% !important; /* Ensure chart takes full height */
+}
+
+
+/* --- Archives Section --- */
+.archive-subtabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--light-gray);
+    padding-bottom: 10px;
+}
+.dark-mode .archive-subtabs {
+    border-bottom-color: var(--light-gray);
+}
+
+.archive-filter-btn { /* Base style in components.css */
+    padding: 8px 16px;
+    background-color: transparent;
+    color: var(--text-color);
+    border-radius: 6px;
+    border-bottom: 3px solid transparent; /* Underline effect */
+}
+
+.archive-filter-btn:hover {
+    background-color: var(--lighter-gray);
+    color: var(--primary-color);
+}
+.dark-mode .archive-filter-btn:hover {
+    background-color: #444;
+}
+
+.archive-filter-btn.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color); /* Active underline */
+    font-weight: 600;
+}
+
+.archive-count { /* Style for the count badge */
+    font-size: 0.8em;
+    margin-left: 6px;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: normal; /* Reset weight from button */
+    color: var(--text-color);
+    opacity: 0.8;
+}
+.dark-mode .archive-count {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+.archive-filter-btn.active .archive-count { /* Style for count in active button */
+    background-color: var(--primary-color);
+    color: var(--white);
+    opacity: 1;
+}
+
+
+/* --- Documents Section (Factures/Reçus) --- */
+.doc-header { /* Unique header for this section */
+    border-bottom: 2px solid var(--primary-color); /* Use primary */
+    padding-bottom: 15px; /* Adjusted padding */
+    margin-bottom: 30px;
+}
+.doc-header h2 { /* Override default section-header h2 style */
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    font-size: 1.6rem; /* Slightly smaller */
+    color: var(--primary-color); /* Match border */
+}
+.dark-mode .doc-header h2 {
+    color: var(--primary-color);
+}
+
+
+/* doc-form-unified styles are in components.css */
+
+.doc-select {
+    /* Inherits general select styles */
+    width: 100%;
+}
+
+.doc-actions {
+    margin-top: 20px;
+    text-align: center; /* Center the buttons */
+    display: flex; /* Use flex for better control */
+    justify-content: center;
+    gap: 15px; /* Space between buttons */
+}
+
+.document-preview {
+    margin-top: 30px;
+    border: 1px solid var(--light-gray);
+    border-radius: var(--border-radius);
+    overflow: hidden; /* For border-radius on children */
+    background: var(--card-bg); /* Match card background */
+    box-shadow: var(--shadow);
+}
+.dark-mode .document-preview {
+    background: var(--card-bg);
+    border-color: var(--light-gray);
+}
+
+
+.preview-header {
+    background-color: var(--lighter-gray);
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dark-mode .preview-header {
+    background-color: #333; /* Darker header for preview */
+    border-bottom-color: var(--light-gray);
+}
+
+
+.preview-header h3 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.2em; /* Adjusted size */
+}
+.dark-mode .preview-header h3 {
+    color: var(--primary-color);
+}
+
+
+.preview-content {
+    padding: 20px;
+    background-color: var(--white); /* Keep preview content white */
+    /* Dark mode handled by iframe content or specific styles if needed */
+}
+.dark-mode .preview-content {
+    background-color: var(--white); /* Usually keep previews on white bg */
+}
+
+/* Styles specific to generated Invoice/Receipt content (if needed) */
+.invoice-header { /* Inside the preview */
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.invoice-details { /* Inside the preview */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.invoice-table { /* Inside the preview */
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.95rem; /* Slightly smaller text in table */
+}
+
+.invoice-table th {
+    background: var(--sidebar-bg); /* Dark header for table */
+    color: white;
+    padding: 10px 12px; /* Adjusted padding */
+    text-align: left;
+    font-weight: 600; /* Bolder header */
+}
+
+.invoice-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--light-gray);
+}
+/* Add zebra striping for better readability */
+.invoice-table tbody tr:nth-child(even) {
+    background-color: var(--lighter-gray);
+}
+.dark-mode .invoice-table tbody tr:nth-child(even) {
+    background-color: #333; /* Darker stripe */
+}
+
+
+.total-amount { /* Inside the preview */
+    text-align: right;
+    font-size: 1.2em;
+    font-weight: bold; /* Make total bold */
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 2px solid var(--primary-color);
+    color: var(--primary-color); /* Highlight total */
+}
+
+
+/* Specific Input Widths */
+input[type="date"], input[type="number"] {
+    /* Allow flexbox/grid to manage width, or set a max-width if needed */
+    /* Example: max-width: 180px; */
+    width: auto; /* Let it size naturally or be controlled by container */
+    flex-grow: 1; /* Allow growing if in a flex container */
+}
+
+/* Transaction Form Container Specifics */
+#transactionFormContainer {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 15px; /* Reduced padding */
+    padding-bottom: 15px;
+    margin-bottom: 20px; /* Reduced margin */
+}
+
+/* --- Recherche Section --- */
+#recherche .section-header h2 { /* Specificity for search header */
+    border-bottom: none; /* Remove underline */
+    padding-bottom: 0;
+    margin-bottom: 0; /* Align with input */
+}
+
+.search-container {
+    margin-bottom: 25px;
+}
+
+#searchInput {
+    /* Inherits general input styles */
+    font-size: 1.1rem;
+    padding: 15px 20px;
+    box-shadow: var(--shadow); /* Add shadow to search input */
+}
+.dark-mode #searchInput {
+    box-shadow: var(--shadow);
+}
+
+
+#searchResultsList {
+    /* Inherits .items-list styles */
+    margin-top: 20px;
+}
+
+/* search-result-item styles are in components.css */
+
+.search-result-item .result-type-icon { /* Specific icon style */
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    width: 40px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.search-result-item .result-info {
+    flex-grow: 1;
+    overflow: hidden; /* Prevent text overflow issues */
+}
+
+.search-result-item .result-title {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 3px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.dark-mode .search-result-item .result-title {
+    color: var(--text-color);
+}
+
+.search-result-item .result-details {
+    font-size: 0.9rem;
+    color: #666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.dark-mode .search-result-item .result-details {
+    color: #aaa;
+}
+
+.search-results .no-results { /* Class added in HTML */
+    text-align: center;
+    color: #888;
+    padding: 20px;
+    font-style: italic;
+    background: var(--card-bg); /* Match card background */
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-top: 15px;
+}
+.dark-mode .search-results .no-results {
+    background: var(--card-bg);
+    color: #aaa;
+}

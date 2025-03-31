@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord - NGnior Bureau</title> <!-- Updated Title -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+       <!-- Link to the new CSS files in order -->
+       <link rel="stylesheet" href="css/base.css">       <!-- Base styles and variables -->
+       <link rel="stylesheet" href="css/layout.css">     <!-- Main layout (sidebar, content area) -->
+       <link rel="stylesheet" href="css/header.css">     <!-- Dashboard header styles -->
+       <link rel="stylesheet" href="css/components.css"> <!-- Reusable components (cards, buttons, forms, modals) -->
+       <link rel="stylesheet" href="css/sections.css">   <!-- Styles specific to each tab/section -->
+       <link rel="stylesheet" href="css/responsive.css"> <!-- Responsive media queries (should be last) -->
+   
+    <!-- Add Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Removed Auth Icon Container -->
+
+    <div class="dashboard-container"> <!-- Changed class name -->
+        <!-- Navigation latérale -->
+        <aside class="sidebar"> <!-- Changed div to aside -->
+            <div class="logo">
+                <img src="Image/ngnior logo-03.png" alt="Logo NGnior Bureau"> <!-- Updated to PNG -->
+            </div>
+            <nav>
+                <ul>
+                    <li class="active"> <!-- Added li wrapper -->
+                        <button class="tab active" data-target="#accueil"> <!-- Kept button for JS compatibility -->
+                            <i class="fas fa-home"></i> Accueil
+                        </button>
+                    </li>
+                    <li>
+                        <button class="tab" data-target="#clients">
+                            <i class="fas fa-users"></i> Clients
+                        </button>
+                    </li>
+                    <li>
+                        <button class="tab" data-target="#projets">
+                            <i class="fas fa-project-diagram"></i> Projets
+                        </button>
+                    </li>
+                    <li>
+                        <button class="tab" data-target="#transactions">
+                            <i class="fas fa-exchange-alt"></i> Transactions
+                        </button>
+                    </li>
+                    <li>
+                        <button class="tab" data-target="#factures">
+                            <i class="fas fa-file-invoice"></i> Factures/Reçus
+                        </button>
+                    </li>
+                    <li>
+                        <button class="tab" data-target="#archives">
+                         <i class="fas fa-archive"></i> Archives
+                        </button>
+                    </li>
+                    <!-- Search Tab -->
+                    <li>
+                        <button class="tab" data-target="#recherche">
+                            <i class="fas fa-search"></i> Recherche
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <!-- Sidebar Footer from design -->
+            <div class="sidebar-footer">
+                <div class="inspiration-quote">
+                    <i class="fas fa-quote-left"></i>
+                    <p>Chaque jour est une nouvelle opportunité</p> <!-- Placeholder, JS will update -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content"> <!-- Changed div to main -->
+            <!-- Header structure from design -->
+            <div class="dashboard-header-container">
+                <div class="clock-theme-container">
+                    <div class="live-clock">
+                        <div class="greeting-user">
+                            <!-- Optional icon from design, uncomment if needed -->
+                            <!-- <i class="fas fa-user-tie user-icon"></i> -->
+                            <div class="greeting-text">Bonjour,<br><span>Prêt à travailler!</span></div> <!-- Placeholder, JS will update -->
+                        </div>
+                        <div class="time-date-container">
+                            <div class="current-time">--:--:--</div> <!-- JS will update -->
+                            <div class="current-date">Chargement...</div> <!-- JS will update -->
+                        </div>
+                    </div>
+                    <button class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </div>
+
+                <div class="user-info">
+                    <div class="user-details">
+                        <!-- User info populated by auth.js using existing IDs -->
+                        <span class="user-name" id="userNameDisplay"></span>
+                        <span class="user-role" id="userTitleDisplay"></span>
+                        <span class="user-email" id="userEmailDisplay"></span>
+                    </div>
+                    <!-- Logout button using existing ID -->
+                    <button id="signOutBtn" class="logout-button" style="display: none;">
+                         <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </button>
+                </div>
+            </div>
+
+            <!-- Section Documents -->
+            <section id="factures" class="tab-content">
+                <div class="doc-header">
+                    <h2>Génération de Documents</h2>
+                </div>
+
+                <div class="doc-form-unified">
+                    <div class="form-group">
+                        <label for="projetDocument">Sélectionner un projet</label>
+                        <select id="projetDocument" class="doc-select">
+                            <option value="">Choisir un projet...</option>
+                        </select>
+                    </div>
+                    
+                <div class="doc-actions">
+                    <button id="generateFactureBtn" class="btn-primary"> <!-- Added ID -->
+                        <i class="fas fa-file-invoice"></i> Générer Facture
+                    </button>
+                    <button id="generateRecuBtn" class="btn-primary"> <!-- Added ID -->
+                        <i class="fas fa-receipt"></i> Générer Reçu
+                    </button>
+                    <button id="saveToArchiveBtn" class="btn-secondary" style="display: none;"> <!-- New Save Button, hidden initially -->
+                         <i class="fas fa-save"></i> Enregistrer Archive
+                    </button>
+                </div>
+                
+                <!-- Container pour l'aperçu du document -->
+                <div id="documentPreview" class="document-preview" style="display: none;">
+                    <div class="preview-header">
+                        <h3>Aperçu du document</h3>
+                    </div>
+                    <div id="previewContent" class="preview-content">
+                        <iframe id="documentFrame" style="width: 100%; height: 400px; border: 1px solid #ccc;"></iframe>
+                        <button id="printDocument" class="btn-primary" style="margin-top: 10px;">
+                            <i class="fas fa-print"></i> Imprimer
+                        </button>
+                    </div>
+                </div>
+                </div>
+            </section>
+            <!-- Section Accueil -->
+            <section id="accueil" class="tab-content active">
+                <!-- Overview Grid structure from design, using existing IDs -->
+                <div class="overview-grid">
+                    <div class="overview-card"> <!-- Use overview-card class -->
+                        <div class="card-icon"><i class="fas fa-tasks"></i></div> <!-- Icon from old structure -->
+                        <div class="card-info">
+                            <span class="card-label">Projets en cours</span>
+                            <span class="card-value" id="projetsEnCoursCount">0</span> <!-- Kept ID -->
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="card-info">
+                            <span class="card-label" id="caMoisLabel">Chiffre d'affaires du mois de ...</span> <!-- Added ID & Placeholder -->
+                            <span class="card-value" id="chiffreAffairesMoisValue">0 Fcfa</span> <!-- Kept ID -->
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="card-icon"><i class="fas fa-calendar-check"></i></div>
+                        <div class="card-info">
+                            <span class="card-label" id="caAnneeLabel">Chiffre d'affaires de l'année ...</span> <!-- Added ID & Placeholder -->
+                            <span class="card-value" id="chiffreAffairesAnneeValue">0 Fcfa</span> <!-- Kept ID -->
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Main Content Section structure from design -->
+                 <section class="main-section">
+                    <div class="section-header">
+                        <h2>Revenus Mensuels 2025</h2> <!-- Title from design -->
+                    </div>
+                    <div class="chart-container"> <!-- Keep existing chart container -->
+                        <canvas id="monthlyIncomeChart"></canvas> <!-- Keep existing ID -->
+                    </div>
+                </section>
+            </section>
+
+            <!-- Section Clients -->
+            <section id="clients" class="tab-content">
+                <div class="section-header">
+                    <h2>Gestion des Clients</h2>
+                    <button id="newClientBtn" class="btn-primary">
+                        <i class="fas fa-plus"></i> Nouveau Client
+                    </button>
+                </div>
+                
+                <div id="clientFormContainer" class="form-container" style="display: none;">
+                    <form id="clientForm">
+                        <h3>Nouveau Client</h3>
+                        <div class="form-group">
+                            <label for="nom">Nom</label>
+                            <input type="text" id="nom" placeholder="Nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prenom">Prénom</label>
+                            <input type="text" id="prenom" placeholder="Prénom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telephone">Téléphone</label>
+                            <input type="tel" id="telephone" placeholder="Téléphone">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Enregistrer</button>
+                            <button type="button" id="cancelClientBtn" class="btn-secondary">Annuler</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="clientsList" class="items-list"></div>
+            </section>
+
+            <!-- Section Projets -->
+            <section id="projets" class="tab-content">
+                <div class="section-header">
+                    <h2>Gestion des Projets</h2>
+                    <button id="newProjetBtn" class="btn-primary">
+                        <i class="fas fa-plus"></i> Nouveau Projet
+                    </button>
+                </div>
+                
+                <div id="projetFormContainer" class="form-container" style="display: none;">
+                    <form id="projetForm">
+                        <h3>Nouveau Projet</h3>
+                        <div class="form-group">
+                            <label for="clientSelect">Client</label>
+                            <select id="clientSelect" required>
+                                <option value="">Choisir un client...</option>
+                            </select>
+                            <div id="idProjetPreview" class="id-preview" style="display: none;"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nomProjet">Nom du projet</label>
+                            <input type="text" id="nomProjet" placeholder="Nom du projet" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="typeProjet">Type de projet</label>
+                            <select id="typeProjet" required>
+                                <option value="">Choisir un type...</option>
+                                <option value="Architecture">Architecture</option>
+                                <option value="Construction">Construction</option>
+                                <option value="Rénovation">Rénovation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateDebut">Date de début</label>
+                            <input type="date" id="dateDebut" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="coutProjet">Coût total (Fcfa)</label> <!-- Changed currency -->
+                            <input type="number" id="coutProjet" placeholder="Coût total" step="1" required> <!-- Step changed to 1 for Fcfa -->
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Créer Projet</button>
+                            <button type="button" id="cancelProjetBtn" class="btn-secondary">Annuler</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="projetsList" class="items-list"></div>
+            </section>
+
+            <!-- Section Transactions -->
+            <section id="transactions" class="tab-content">
+                <!-- EN-TÊTE AJOUTÉ -->
+                <div class="section-header">
+                    <h2>Transactions</h2>
+                    <button id="newTransactionBtn" class="btn-primary"> <!-- BOUTON AJOUTÉ -->
+                        <i class="fas fa-plus"></i> Nouvelle Transaction
+                    </button>
+                </div>
+                <!-- CONTENEUR AJOUTÉ AUTOUR DU FORMULAIRE -->
+                <div id="transactionFormContainer" class="form-container" style="display: none;"> 
+                    <form id="transactionForm" class="modern-form"> 
+                        <!-- Le formulaire est maintenant à l'intérieur -->
+                        <h3>Nouvelle Transaction</h3>
+                        <div class="form-group">
+                            <label for="projetSelect">Projet</label>
+                            <select id="projetSelect" required>
+                                <option value="">Choisir un projet...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="montant">Montant (Fcfa)</label>
+                            <input type="number" id="montant" placeholder="Montant" step="1" required> <!-- Step changed to 1 for Fcfa -->
+                        </div>
+                        <div class="form-group">
+                            <label for="dateTransaction">Date</label>
+                            <input type="date" id="dateTransaction" required>
+                        </div>
+                        <!-- ACTIONS DU FORMULAIRE AJOUTÉES -->
+                        <div class="form-actions"> 
+                            <button type="submit" class="btn-primary">Enregistrer</button>
+                            <button type="button" id="cancelTransactionBtn" class="btn-secondary">Annuler</button> <!-- BOUTON ANNULER AJOUTÉ -->
+                        </div>
+                    </form>
+                </div>
+                <div id="transactionsList" class="items-list"></div>
+            </section>
+
+            <!-- Section Archives -->
+            <section id="archives" class="tab-content">
+                 <div class="section-header">
+                     <h2>Archives Factures/Reçus</h2>
+                 </div>
+                 <!-- Archive Sub-tabs -->
+                 <div class="archive-subtabs">
+                     <button class="archive-filter-btn active" data-filter="F">Factures <span class="archive-count" id="factureCount">(0)</span></button>
+                     <button class="archive-filter-btn" data-filter="R">Reçus <span class="archive-count" id="recuCount">(0)</span></button>
+                 </div>
+                 <div id="archivesList" class="items-list">
+                     <!-- Archived documents will be listed here -->
+                 </div>
+            </section>
+
+            <!-- Section Recherche -->
+            <section id="recherche" class="tab-content">
+                <div class="section-header">
+                    <h2>Recherche Globale</h2>
+                </div>
+                <div class="search-container form-group"> <!-- Re-use form-group for spacing -->
+                     <input type="search" id="searchInput" placeholder="Rechercher par ID (Client, Projet, Transaction, Archive) ou Nom Client..." class="large-input">
+                </div>
+                <div id="searchResultsList" class="items-list search-results">
+                    <!-- Search results will be displayed here -->
+                    <p class="no-results" style="display: none;">Aucun résultat trouvé.</p>
+                </div>
+            </section>
+
+
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script> <!-- Auth SDK -->
+    <!-- Firebase Config -->
+    <script type="module" src="JavaScript/firebase-config.js"></script>
+    <script type="module" src="JavaScript/auth.js"></script> 
+    <!-- Application Scripts (loaded as modules) -->
+    <script type="module" src="JavaScript/utils.js"></script>
+    <script type="module" src="JavaScript/dataManager.js"></script>
+    <script type="module" src="JavaScript/uiDisplay.js"></script>
+    <script type="module" src="JavaScript/uiUpdater.js"></script>
+    <script type="module" src="JavaScript/headerUpdater.js"></script>
+    <script type="module" src="JavaScript/deletionManager.js"></script>
+    <script type="module" src="JavaScript/archiveManager.js"></script>
+    <script type="module" src="JavaScript/searchManager.js"></script>
+    <script type="module" src="JavaScript/generateFacture.js"></script>
+    <script type="module" src="JavaScript/generateRecu.js"></script>
+    <script type="module" src="JavaScript/clientFormHandler.js"></script>
+    <script type="module" src="JavaScript/projetFormHandler.js"></script>
+    <script type="module" src="JavaScript/transactionFormHandler.js"></script>
+    <script type="module" src="JavaScript/main.js"></script>
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn" id="closeAuthModal">&times;</span>
+            <div id="authForms">
+                <!-- Sign In Form -->
+                <form id="signInForm">
+                    <h3>Se Connecter</h3>
+                    <div class="form-group">
+                        <label for="signInEmail">Email</label>
+                        <input type="email" id="signInEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signInPassword">Mot de passe</label>
+                        <input type="password" id="signInPassword" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Connexion</button>
+                    <p id="signInError" class="error-message" style="display: none;"></p>
+                    <hr style="margin: 20px 0; border-top: 1px solid var(--light-gray);">
+                    <button type="button" id="googleSignInBtn" class="btn-google">
+                        <i class="fab fa-google"></i> Continuer avec Google
+                    </button>
+                    <p style="margin-top: 15px;">Pas de compte? <a href="#" id="showSignUp">Créer un compte</a></p>
+                </form>
+
+                <!-- Sign Up Form (initially hidden) -->
+                <form id="signUpForm" style="display: none;">
+                    <h3>Créer un Compte</h3>
+                     <div class="form-group">
+                        <label for="signUpName">Nom complet</label>
+                        <input type="text" id="signUpName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUpEmail">Email</label>
+                        <input type="email" id="signUpEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUpTitle">Titre</label>
+                        <select id="signUpTitle" required>
+                            <option value="">Sélectionner un titre...</option>
+                            <option value="Directeur">Directeur</option>
+                            <option value="Comptable">Comptable</option>
+                            <option value="Utilisateur">Utilisateur</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUpPassword">Mot de passe</label>
+                        <input type="password" id="signUpPassword" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="signUpConfirmPassword">Confirmer Mot de passe</label>
+                        <input type="password" id="signUpConfirmPassword" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Créer Compte</button>
+                    <p id="signUpError" class="error-message" style="display: none;"></p>
+                    <p>Déjà un compte? <a href="#" id="showSignIn">Se connecter</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase Auth SDK -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+    <!-- Auth Logic -->
+    <script type="module" src="JavaScript/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+/* css/layout.css */
+
+/* Ensure the main container uses flexbox */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden; /* Added from inspiration */
+}
+
+/* Barre latérale */
+.sidebar {
+    background-color: var(--sidebar-bg);
+    color: #fff; /* Text color for sidebar */
+    width: 280px;
+    padding: 25px; /* Updated padding */
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+    z-index: 10; /* Added z-index */
+    box-shadow: none; /* Remove old shadow, rely on bg color */
+    gap: 0; /* Remove old gap */
+}
+
+.sidebar .logo {
+    margin-bottom: 40px;
+    text-align: center;
+    transition: transform 0.3s;
+    position: relative; /* Needed for pseudo-element positioning */
+    overflow: hidden; /* Contain the shimmer effect */
+    display: inline-block; /* Ensure container fits the image */
+    border-radius: 8px; /* Optional: round corners slightly */
+}
+
+.sidebar .logo::before { /* Shimmer pseudo-element */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Start off-screen left */
+    width: 75%; /* Width of the shimmer */
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg); /* Angle the shimmer */
+    transition: left 0.75s ease-in-out; /* Control animation speed */
+    z-index: 1; /* Ensure it's above the image if needed, though img is background */
+}
+
+.sidebar .logo:hover::before {
+    left: 120%; /* Move across and off-screen right */
+}
+
+.sidebar .logo:hover {
+    transform: scale(1.05); /* Keep existing scale effect */
+}
+
+.sidebar .logo img {
+    max-width: 180px;
+    height: auto;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    display: block; /* Prevent extra space below image */
+}
+
+.sidebar nav { /* Added nav wrapper */
+    flex-grow: 1; /* Allow nav to take available space */
+}
+
+.sidebar nav ul {
+    list-style: none;
+    width: 100%;
+    padding: 0; /* Remove default ul padding */
+}
+
+.sidebar nav li {
+    margin-bottom: 8px;
+}
+
+/* Style for the tab buttons inside the new structure */
+.sidebar nav a, .sidebar nav .tab { /* Apply to both potential structures */
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 18px; /* Updated padding */
+    border-radius: var(--border-radius); /* Use new radius */
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    background: none; /* Ensure no background */
+    border: none; /* Ensure no border */
+    cursor: pointer;
+    font-weight: 500; /* Keep font weight */
+    text-align: left; /* Keep text align */
+    width: 100%; /* Make it full width */
+    gap: 12px; /* Keep gap */
+    margin: 0; /* Reset margin */
+}
+
+.sidebar nav a::before, .sidebar nav .tab::before { /* Shimmer effect */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: 0.5s;
+}
+
+.sidebar nav a:hover::before, .sidebar nav .tab:hover::before {
+    left: 100%;
+}
+
+.sidebar nav a:hover, .sidebar nav .tab:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px); /* Add hover effect */
+    color: #fff; /* Ensure text remains white on hover */
+}
+
+.sidebar nav a i, .sidebar nav .tab i {
+    margin-right: 12px; /* Keep margin */
+    width: 24px; /* Updated width */
+    text-align: center;
+    font-size: 1.1rem; /* Updated font size */
+}
+
+.sidebar nav li.active a, .sidebar nav .tab.active { /* Style for active tab */
+    background-color: var(--primary-color);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3); /* Use primary color alpha */
+    color: #fff; /* Ensure text is white */
+    border-left: none; /* Remove old border */
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.inspiration-quote {
+    color: rgba(255,255,255,0.8);
+    font-style: italic;
+    padding: 15px 10px 10px 30px;
+    position: relative;
+    background: rgba(0,0,0,0.1);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.inspiration-quote:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.inspiration-quote i.fa-quote-left {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    font-size: 1.8rem;
+    opacity: 0.3;
+}
+
+.inspiration-quote p {
+    margin-left: 25px;
+    font-size: 0.95rem;
+}
+
+/* Contenu principal */
+.main-content {
+    flex: 1;
+    padding: 30px;
+    background-color: var(--bg-color); /* Use new variable */
+    transition: var(--transition);
+    overflow-y: auto; /* Added from inspiration */
+}
+
+/* Shared Section Header Style */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h2 { /* Style moved from sections.css for general use */
+     font-size: 1.8rem; /* Adjusted size */
+     color: var(--text-color);
+     padding-bottom: 10px;
+     border-bottom: 3px solid var(--primary-color);
+     margin-bottom: 15px; /* Consistent spacing */
+}
+.dark-mode .section-header h2 {
+    color: var(--text-color);
+    border-bottom-color: var(--primary-color);
+}

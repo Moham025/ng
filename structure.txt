@@ -1,0 +1,19 @@
+JavaScript/
+├── firebase-config.js  (Existant)
+├── auth.js             (Existant)
+├── generateFacture.js  (Existant)
+├── generateRecu.js     (Existant)
+├── clientFormHandler.js(Existant)
+├── projetFormHandler.js (Existant)
+├── transactionFormHandler.js(Existant)
+│
+├── dataManager.js      # Gère le chargement et le stockage des données (Firestore + arrays locaux)
+├── uiDisplay.js        # Fonctions d'affichage des listes (clients, projets, etc.)
+├── uiUpdater.js        # Fonctions de mise à jour (stats, selects, chart)
+├── headerUpdater.js    # Gère l'horloge, le message d'accueil, le thème, la neige
+├── archiveManager.js   # Gère l'archivage (génération, sauvegarde, affichage, suppression)
+├── searchManager.js    # Gère la logique de recherche et l'affichage des résultats
+├── deletionManager.js  # Gère la logique de suppression (clients, projets, transactions)
+├── utils.js            # Fonctions utilitaires (génération d'ID, debounce)
+│
+└── main.js             # Point d'entrée principal, initialisation, écouteurs d'événements majeurs, orchestration

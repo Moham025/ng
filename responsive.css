@@ -1,0 +1,279 @@
+/* css/responsive.css */
+
+@media (max-width: 1200px) {
+    .dashboard-header-container {
+        flex-direction: column;
+        min-height: auto; /* Allow height to adjust */
+        gap: 15px; /* Reduce gap */
+    }
+
+    .clock-theme-container {
+        width: 100%;
+        margin-bottom: 0; /* Remove bottom margin as gap handles it */
+        min-height: 140px;
+    }
+
+    .user-info {
+        width: 100%;
+        align-items: flex-start; /* Align left on smaller screens */
+        min-width: auto; /* Remove min-width */
+        flex-direction: row; /* Row layout for user info/button */
+        justify-content: space-between;
+        align-items: center; /* Center items vertically */
+    }
+
+    .user-details {
+        text-align: left; /* Align text left */
+        margin-bottom: 0; /* Remove bottom margin */
+    }
+    .logout-button {
+        width: auto; /* Allow button to size naturally */
+        align-self: center; /* Align button vertically */
+        margin-top: 0; /* Remove top margin */
+    }
+}
+
+@media (max-width: 992px) {
+    .dashboard-container {
+        flex-direction: column;
+        overflow: visible; /* Allow content to scroll */
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto; /* Adjust height */
+        padding: 15px; /* Reduce padding */
+        flex-direction: row;
+        align-items: center;
+        overflow-x: auto; /* Allow horizontal scroll for tabs */
+        overflow-y: hidden; /* Prevent vertical scroll */
+        gap: 15px; /* Add gap between logo/nav */
+        z-index: 20; /* Ensure sidebar is above content */
+        position: sticky; /* Make sidebar sticky */
+        top: 0;
+        background-color: var(--sidebar-bg); /* Ensure background */
+        box-shadow: var(--shadow); /* Add shadow when sticky */
+    }
+    /* Hide scrollbar visually but allow scrolling */
+    .sidebar::-webkit-scrollbar { display: none; }
+    .sidebar { -ms-overflow-style: none; scrollbar-width: none; }
+
+
+    .sidebar .logo {
+        margin-bottom: 0;
+        margin-right: 0; /* Use gap instead */
+        flex-shrink: 0; /* Prevent logo from shrinking */
+    }
+    .sidebar .logo img {
+        max-width: 120px;
+    }
+
+    .sidebar nav {
+        flex-grow: 1;
+        overflow: hidden; /* Prevent nav from causing overflow */
+    }
+    .sidebar nav ul {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: 10px;
+        width: auto; /* Allow ul to size based on content */
+        padding-bottom: 5px; /* Prevent scrollbar overlap */
+    }
+
+    .sidebar nav li {
+        margin-bottom: 0; /* Remove bottom margin */
+        flex-shrink: 0; /* Prevent tabs from shrinking */
+    }
+
+    .sidebar-footer {
+        display: none; /* Hide footer */
+    }
+
+    .main-content {
+        padding-top: 90px; /* Add padding to account for sticky sidebar */
+        overflow-y: visible; /* Allow main content to scroll normally */
+    }
+
+    .greeting-text span {
+        font-size: 1.4rem;
+    }
+
+    .current-time {
+        font-size: 2.8rem;
+    }
+
+     .overview-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust minmax */
+    }
+}
+
+@media (max-width: 768px) {
+    .live-clock {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px; /* Add gap between greeting and time */
+    }
+
+    .greeting-user {
+        margin-right: 0;
+        margin-bottom: 0; /* Use gap instead */
+    }
+
+    .time-date-container {
+        text-align: left;
+        margin-left: 0; /* Reset margin */
+    }
+
+    .theme-toggle {
+        /* Keep absolute positioning, adjust if needed */
+        top: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+    }
+    .theme-toggle i {
+        font-size: 1.5rem;
+    }
+
+    .main-content {
+        padding: 20px;
+        padding-top: 85px; /* Adjust top padding */
+    }
+    .sidebar {
+        padding: 10px 15px; /* Further reduce padding */
+    }
+
+    .user-info {
+        padding: 15px; /* Reduce padding */
+        flex-direction: column; /* Stack user info and button */
+        align-items: flex-start; /* Align left */
+        gap: 10px;
+    }
+    .logout-button {
+        width: 100%; /* Full width on small screens */
+        align-self: stretch;
+    }
+
+     /* Adjust list item widths */
+    .projet-client, .client-prenom, .transaction-client, .archive-client { flex-basis: 120px; }
+    .projet-cout, .client-tel, .transaction-montant, .archive-montant { flex-basis: 80px; }
+    .projet-reste { flex-basis: 80px; }
+    .projet-date, .client-date, .transaction-date, .archive-date { flex-basis: 90px; }
+
+     .modal-content {
+        width: 90%; /* Wider modal on small screens */
+        margin: 15% auto; /* Adjust vertical margin */
+     }
+}
+
+@media (max-width: 576px) {
+    .overview-grid {
+        grid-template-columns: 1fr; /* Stack cards */
+        gap: 15px; /* Reduce gap */
+    }
+
+    .clock-theme-container {
+        padding: 15px 20px; /* Reduce padding */
+        min-height: auto; /* Allow natural height */
+    }
+
+    .current-time {
+        font-size: 2.0rem; /* Smaller time */
+        letter-spacing: 2px;
+    }
+
+    .current-date {
+        font-size: 1.0rem; /* Smaller date */
+    }
+
+    .greeting-text {
+        font-size: 1.0rem;
+    }
+
+    .greeting-text span {
+        font-size: 1.2rem;
+    }
+
+    .user-icon { /* Style for optional icon */
+        font-size: 2.0rem;
+        min-width: 50px;
+        height: 50px;
+        padding: 12px;
+        margin-right: 15px;
+    }
+
+    .section-header {
+        flex-direction: column; /* Stack title and button */
+        align-items: flex-start;
+        gap: 10px; /* Add gap */
+    }
+     .section-header h2 {
+        font-size: 1.4rem;
+     }
+     .section-header .btn-primary {
+        width: 100%; /* Full width button */
+     }
+
+
+    .sidebar nav a, .sidebar nav .tab {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+    .sidebar nav a i, .sidebar nav .tab i {
+        font-size: 1rem;
+        margin-right: 8px; /* Use gap instead if possible */
+    }
+    .sidebar .logo img {
+        max-width: 100px;
+    }
+
+    .main-content {
+        padding: 15px;
+        padding-top: 80px; /* Adjust for sidebar */
+    }
+
+    .form-container, .doc-form-unified {
+        padding: 15px; /* Reduce padding */
+    }
+     .form-actions {
+         flex-direction: column; /* Stack form buttons */
+         gap: 8px;
+     }
+     .form-actions button {
+         width: 100%; /* Full width form buttons */
+     }
+
+     /* Force list items to wrap content better */
+     .projet-card, .client-card, .transaction-card, .archive-card {
+        flex-wrap: wrap; /* Allow wrapping */
+        padding: 10px;
+        gap: 5px 10px; /* Row and column gap */
+     }
+    /* Adjust flex basis for wrapping */
+     .projet-number, .client-number, .transaction-number, .archive-number,
+     .projet-id, .client-id, .transaction-id, .archive-doc-id,
+     .projet-nom, .client-nom, .transaction-projet, .archive-type,
+     .projet-client, .client-prenom, .transaction-client, .archive-client,
+     .projet-cout, .client-tel, .transaction-montant, .archive-montant,
+     .projet-reste,
+     .projet-date, .client-date, .transaction-date, .archive-date,
+     .delete-projet-btn, .delete-client-btn, .delete-transaction-btn, .delete-archive-btn {
+         flex-basis: auto; /* Allow natural sizing */
+         flex-grow: 0; /* Don't grow excessively */
+         min-width: 0; /* Remove min-width constraints */
+         text-align: left; /* Align most text left */
+         margin-left: 0; /* Reset specific margins */
+     }
+     /* Re-apply right align for amounts */
+     .projet-cout, .transaction-montant, .archive-montant, .projet-reste {
+         text-align: right;
+         width: 100%; /* Take full width below other items */
+         margin-top: 5px;
+     }
+     .delete-projet-btn, .delete-client-btn, .delete-transaction-btn, .delete-archive-btn {
+        position: absolute; /* Position delete top right */
+        top: 5px;
+        right: 5px;
+     }
+}

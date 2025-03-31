@@ -1,0 +1,522 @@
+/* css/components.css */
+
+/* --- Buttons --- */
+.btn-primary, .btn-secondary, .logout-button, .btn-google, .doc-btn, .archive-filter-btn {
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 12px 20px;
+    border-radius: var(--border-radius); /* Consistent radius */
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; /* Center content */
+    gap: 8px;
+    text-decoration: none; /* Remove underline from potential links */
+    line-height: 1; /* Prevent extra height */
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: #2980b9; /* Adjust based on primary */
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btn-secondary {
+    background: var(--light-gray);
+    color: var(--text-color);
+}
+
+.btn-secondary:hover {
+    background: #cccccc; /* Slightly darker gray */
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+.dark-mode .btn-secondary {
+    background: #555;
+    color: var(--text-color);
+}
+.dark-mode .btn-secondary:hover {
+    background: #666;
+}
+
+.logout-button { /* Style for #signOutBtn */
+    background-color: var(--accent);
+    color: var(--white);
+    padding: 10px 15px; /* Slightly smaller */
+    border-radius: 6px; /* Smaller radius */
+    font-size: 0.9rem;
+    width: 100%; /* Full width within its container */
+    margin-top: auto; /* Push to bottom if container allows */
+}
+
+.logout-button:hover {
+    background-color: #c0392b; /* Darker accent */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+}
+
+.logout-button i {
+    margin-right: 0; /* Remove margin, use gap */
+}
+
+/* Google Button Specific Styles */
+.btn-google {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--light-gray);
+    width: 100%; /* Often used full-width in modals */
+    margin-top: 10px; /* Spacing in modals */
+    padding: 14px;
+    font-size: 1.1rem;
+    box-sizing: border-box;
+}
+
+.btn-google:hover {
+    background-color: var(--lighter-gray);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.dark-mode .btn-google {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--light-gray);
+}
+.dark-mode .btn-google:hover {
+    background-color: #444;
+}
+
+.btn-google i.fab.fa-google {
+    color: var(--google-blue);
+    font-size: 1.2em;
+}
+
+/* Delete Buttons (Common) */
+.delete-projet-btn, .delete-client-btn, .delete-transaction-btn, .delete-archive-btn { /* Added archive */
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 5px;
+    margin-left: 10px; /* Space before the button */
+    transition: color 0.2s ease;
+    flex-shrink: 0; /* Prevent shrinking in flex layouts */
+}
+
+.delete-projet-btn:hover, .delete-client-btn:hover, .delete-transaction-btn:hover, .delete-archive-btn:hover {
+    color: var(--accent); /* Red on hover */
+}
+
+
+/* --- Forms --- */
+.form-container, .doc-form-unified { /* doc-form-unified shares styles */
+    background: var(--card-bg); /* Use card background variable */
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+    animation: slideDown 0.3s ease; /* Reference from base.css */
+}
+.dark-mode .form-container, .dark-mode .doc-form-unified {
+     background: var(--card-bg);
+}
+
+.form-container h3, .doc-form-unified h3 {
+    margin-top: 0;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--light-gray);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.3rem; /* Consistent heading size */
+}
+.dark-mode .form-container h3, .dark-mode .doc-form-unified h3 {
+    color: var(--text-color);
+    border-bottom-color: var(--light-gray);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-color); /* Use text color */
+}
+.dark-mode .form-group label {
+    color: var(--text-color);
+}
+
+
+/* General Input/Select Styling */
+input, select {
+    width: 100%; /* Make inputs/selects full width by default */
+    padding: 12px 15px;
+    border: 1px solid var(--light-gray);
+    border-radius: var(--border-radius); /* Use new radius */
+    font-size: 1rem;
+    transition: var(--transition);
+    background-color: var(--lighter-gray);
+    box-sizing: border-box;
+    color: var(--text-color); /* Added base text color */
+}
+.dark-mode input, .dark-mode select {
+    background-color: #333; /* Darker background for inputs */
+    border-color: #555;
+    color: var(--text-color);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color); /* Use primary color for focus */
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2); /* Use primary color alpha */
+    background-color: var(--white);
+}
+.dark-mode input:focus, .dark-mode select:focus {
+    background-color: #444;
+    border-color: var(--primary-color);
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 20px; /* Add some space above actions */
+}
+
+
+/* --- Cards & Lists --- */
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+/* Base card style applicable to overview, item, project, client, transaction, search results etc. */
+.overview-card, .item, .projet-card, .client-card, .transaction-card, .search-result-item, .archive-card { /* Added archive-card */
+    background-color: var(--card-bg);
+    padding: 20px; /* Standardized padding */
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    margin-bottom: 10px; /* Default spacing for list items */
+    position: relative; /* Context for pseudo-elements/absolute positioning */
+    overflow: hidden; /* Prevent content spill */
+    display: flex; /* Default to flex for content alignment */
+    align-items: center; /* Default vertical alignment */
+    gap: 15px; /* Default gap */
+    border-left: 4px solid transparent; /* Placeholder for colored borders */
+}
+.dark-mode .overview-card, .dark-mode .item, .dark-mode .projet-card, .dark-mode .client-card, .dark-mode .transaction-card, .dark-mode .search-result-item, .dark-mode .archive-card {
+    background: var(--card-bg);
+    border-color: transparent; /* Adjust if using borders */
+}
+
+
+.overview-card:hover, .item:hover, .projet-card:hover, .client-card:hover, .transaction-card:hover, .search-result-item:hover, .archive-card:hover {
+    transform: translateY(-5px); /* Consistent hover */
+    box-shadow: var(--shadow-hover);
+}
+
+/* Overview Card Specifics */
+.overview-card {
+    gap: 25px; /* Larger gap for overview */
+    padding: 25px; /* Larger padding */
+    border-left-color: var(--primary-color); /* Primary color border */
+}
+
+.overview-card::before { /* Optional decorative element */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px; /* Match border-left or adjust */
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: width 0.3s;
+    opacity: 0; /* Start hidden */
+}
+.overview-card:hover::before {
+    width: 100%;
+    opacity: 0.05; /* Subtle background effect */
+}
+
+.overview-card .card-icon {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(52, 152, 219, 0.1);
+    border-radius: 50%;
+    z-index: 1;
+    transition: var(--transition);
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.overview-card:hover .card-icon {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 8px rgba(52, 152, 219, 0.2);
+}
+
+.overview-card .card-info {
+    flex: 1;
+    z-index: 1;
+}
+
+.overview-card .card-label {
+    display: block;
+    font-size: 0.95rem;
+    color: #777;
+    margin-bottom: 8px;
+}
+.dark-mode .overview-card .card-label {
+    color: #aaa;
+}
+
+.overview-card .card-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    line-height: 1;
+}
+.dark-mode .overview-card .card-value {
+    color: var(--text-color);
+}
+
+
+/* List container style */
+.items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Project/Client/Transaction Card Specifics */
+.projet-card, .client-card, .transaction-card, .archive-card {
+    justify-content: space-between; /* Space out elements */
+    padding: 10px 15px; /* Reduced padding for list items */
+    border-left-color: var(--secondary-color); /* Secondary color border */
+    animation: itemFadeIn 0.3s ease-out; /* Reference from base.css */
+}
+.dark-mode .projet-card, .dark-mode .client-card, .dark-mode .transaction-card, .dark-mode .archive-card {
+    border-left-color: var(--secondary-color);
+}
+
+.projet-card:hover, .client-card:hover, .transaction-card:hover, .archive-card:hover {
+    transform: translateY(-3px) scale(1.01); /* Different hover for lists */
+}
+
+.projet-info, .client-info, .transaction-info, .archive-info { /* Shared class for info blocks */
+    padding: 0 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    color: var(--text-color); /* Default text color */
+}
+.dark-mode .projet-info, .dark-mode .client-info, .dark-mode .transaction-info, .dark-mode .archive-info {
+    color: var(--text-color);
+}
+
+/* Secondary text within cards */
+.item p, .projet-info, .client-info, .transaction-info, .archive-info {
+    /* Styles for secondary text like dates, IDs etc. */
+    color: #666;
+    margin: 3px 0; /* Small vertical margin */
+    font-size: 0.9em;
+}
+.dark-mode .item p, .dark-mode .projet-info, .dark-mode .client-info, .dark-mode .transaction-info, .dark-mode .archive-info {
+    color: #aaa;
+}
+
+/* Primary info (names, values) */
+.projet-nom, .client-nom, .transaction-projet, .archive-doc-id, .card-value /* etc. */ {
+    color: var(--text-color);
+    font-weight: 500; /* Slightly bolder */
+}
+.dark-mode .projet-nom, .dark-mode .client-nom, .dark-mode .transaction-projet, .dark-mode .archive-doc-id, .dark-mode .card-value {
+    color: var(--text-color);
+}
+
+/* Specific ID colors */
+.projet-id, .client-id, .transaction-id, .archive-ref-id {
+     color: #777;
+     font-size: 0.9em;
+}
+.dark-mode .projet-id, .dark-mode .client-id, .dark-mode .transaction-id, .dark-mode .archive-ref-id {
+     color: #888;
+}
+
+/* Flex Basis for list items */
+.projet-number, .client-number, .transaction-number, .archive-number { flex-basis: 40px; font-weight: bold; text-align: center; flex-shrink: 0; }
+.projet-id, .client-id, .transaction-id, .archive-doc-id { flex-basis: 120px; flex-shrink: 0; } /* Slightly wider for archive */
+.projet-nom, .client-nom, .transaction-projet, .archive-type { flex-grow: 1; min-width: 150px; font-weight: 500; }
+.projet-client, .client-prenom, .transaction-client, .archive-client { flex-basis: 150px; flex-shrink: 0; }
+.projet-cout, .client-tel, .transaction-montant, .archive-montant { flex-basis: 100px; text-align: right; flex-shrink: 0; }
+.projet-reste { flex-basis: 100px; text-align: right; font-weight: bold; flex-shrink: 0; }
+.projet-date, .client-date, .transaction-date, .archive-date { flex-basis: 100px; text-align: center; flex-shrink: 0; }
+
+.projet-reste.reste-positif {
+    color: var(--accent); /* Red for amount remaining */
+}
+
+.item .item-meta { /* Style for meta info if using generic .item */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--light-gray);
+    font-size: 0.9rem;
+     color: #888;
+}
+.dark-mode .item .item-meta {
+    border-top-color: var(--light-gray);
+    color: #aaa;
+}
+
+
+/* --- Modals & Auth --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    animation: fadeIn 0.3s ease; /* Reference from base.css */
+}
+
+.modal-content {
+    background-color: var(--card-bg); /* Use card background */
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid var(--light-gray); /* Subtle border */
+    width: 80%;
+    max-width: 450px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-hover); /* More prominent shadow */
+    position: relative;
+    animation: slideDown 0.4s ease; /* Reference from base.css */
+}
+.dark-mode .modal-content {
+    background-color: var(--card-bg);
+    border-color: var(--light-gray);
+}
+
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1; /* Ensure consistent positioning */
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--accent);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Auth Specific Styles */
+.auth-icon-container { /* For potential icon if re-added */
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+}
+
+#authIcon { /* For potential icon if re-added */
+    font-size: 2rem;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+#authIcon:hover { color: var(--primary-color); }
+.dark-mode #authIcon { color: var(--text-color); }
+.dark-mode #authIcon:hover { color: var(--primary-color); }
+
+#authForms h3 {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+    /* Remove border from form-container h3 style */
+    border-bottom: none;
+    padding-bottom: 0;
+}
+.dark-mode #authForms h3 { color: var(--text-color); }
+
+#authForms .form-group input,
+#authForms .form-group select {
+    /* Inherits general styles */
+    margin-bottom: 5px; /* Slightly reduce space below input */
+}
+
+#authForms button[type="submit"],
+#authForms button[type="button"] { /* Apply to Sign In/Up & Google button */
+    width: 100%;
+    margin-top: 10px;
+    padding: 14px;
+    font-size: 1.1rem;
+    box-sizing: border-box;
+}
+
+#authForms hr {
+     margin: 20px 0;
+     border: none; /* Remove default border */
+     border-top: 1px solid var(--light-gray); /* Use variable */
+}
+.dark-mode #authForms hr {
+     border-top-color: var(--light-gray);
+}
+
+
+#authForms p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: var(--text-color); /* Ensure text color */
+}
+.dark-mode #authForms p { color: var(--text-color); }
+
+
+#authForms a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+#authForms a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: var(--accent);
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: center;
+    display: block; /* Ensure it takes space */
+    min-height: 1.2em; /* Prevent layout shifts */
+}
+
+#userInfoDisplay { /* Inline styles target specific spans, this is fallback */
+    line-height: 1.3;
+}

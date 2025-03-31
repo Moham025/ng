@@ -1,0 +1,80 @@
+/* css/base.css */
+
+/* Variables CSS */
+:root {
+    --primary-color: #3498db; /* Changed from --secondary */
+    --secondary-color: #2ecc71; /* New */
+    --accent: #e74c3c; /* Kept */
+    --bg-color: #f5f7fa; /* Changed from --background */
+    --text-color: #333333; /* Changed from --text */
+    --card-bg: #ffffff; /* New */
+    --sidebar-bg: #2c3e50; /* Changed from --primary */
+    --header-bg: #ffffff; /* New */
+    --light-gray: #e0e0e0; /* Kept */
+    --lighter-gray: #f5f5f5; /* Kept */
+    --white: #ffffff; /* Kept */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Kept */
+    --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.1); /* Kept */
+    --border-radius: 12px; /* Changed from --radius */
+    --transition: all 0.3s ease; /* Kept */
+    --google-blue: #4285F4; /* Kept */
+    --google-red: #DB4437; /* Kept */
+    --google-yellow: #F4B400; /* Kept */
+    --google-green: #0F9D58; /* Kept */
+}
+
+/* Mode sombre */
+.dark-mode {
+    --primary-color: #3da5ff;
+    --bg-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --card-bg: #2d2d2d;
+    --sidebar-bg: #1a252f;
+    --header-bg: #222222;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --light-gray: #444; /* Adjust grays for dark mode */
+    --lighter-gray: #333;
+}
+
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Updated font */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: var(--transition);
+    line-height: 1.6;
+    margin: 0; /* Ensure margin is 0 */
+    padding: 0; /* Ensure padding is 0 */
+}
+
+/* Base for Tab Content */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Base Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes itemFadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
